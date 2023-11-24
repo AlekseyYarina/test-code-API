@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homework 11</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  
+  <header class="header-container">
+    <div class="container">
+      <form class="search-form" id="search-form-js">
+        <div class="search-container">
+          <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+          <button class="btn-search" type="submit" id="btn-search-js">Search</button>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="gallery" id="gallery-js"></div>
+    <div class="js-guard"></div>
+    <button type="button" class="btn-load-more visually-hidden" id="load-more-js">Load More Images</button>
+  </main>
+
+  <script src="index.js" type="module"></script>
+</body>
+
+</html>
