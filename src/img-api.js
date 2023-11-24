@@ -1,47 +1,55 @@
 import axios from 'axios';
 
-export default class ImagesApi {
-  constructor() {
-    this.searchQueryValue = '';
-    this.page = 1;
+const BASE_URL = 'https://food-boutique.b.goit.study/api/';
+
+export const getAllProducts = async () => {
+  const res = await axios.get(`${BASE_URL}products/`);
+  return await res.data;
+};
+
+export const getProductsByParams = async optionsObj => {
+  let FULL_URL = `${BASE_URL}products?`;
+
+  for (const key in optionsObj) {
+    FULL_URL += `&${key}=${optionsObj[key].toString()}`;
   }
 
-  instance = axios.create({
-    baseURL: 'https://pixabay.com/api/',
-    params: {
-      key: '12446809-e6b893a82bb8773aa8d1d047e',
-      image_type: 'photo',
-      orientation: 'horizontal',
-      safesearch: 'true',
-      per_page: 40,
-    },
+  const res = await axios.get(FULL_URL);
+  return await res.data;
+};
+
+export const getProductsCategories = async () => {
+  const res = await axios.get(`${BASE_URL}products/categories/`);
+  return await res.data;
+};
+
+export const getDiscountProducts = async () => {
+  const res = await axios.get(`${BASE_URL}products/discount/`);
+  return await res.data;
+};
+
+export const getPopularProducts = async (limit = 5) => {
+  const FULL_URL = Number.isInteger(limit)
+    ? `${BASE_URL}products/popular/?limit=${limit}`
+    : `${BASE_URL}products/popular/`;
+
+  const res = await axios.get(FULL_URL);
+  return await res.data;
+};
+
+export const getProductById = async id => {
+  const res = await axios.get(`${BASE_URL}products/?id=${id}`);
+  return await res.data;
+};
+
+export const createNewOrder = async orderObj => {
+  const res = await axios.post(`${BASE_URL}orders/`, JSON.stringify(orderObj));
+  return await res.data;
+};
+
+export const orderSubscription = async email => {
+  const res = await axios.post(`${BASE_URL}subscription/`, {
+    email: `${email}`,
   });
-
-  async fetchImages() {
-    try {
-      const response = await this.instance.get('', {
-        params: {
-          q: this.searchQueryValue,
-          page: this.page,
-        },
-      });
-      this.page += 1;
-      return response.data;
-    } catch (error) {
-      console.error(error.message);
-      throw error;
-    }
-  }
-
-  resetPage() {
-    this.page = 1;
-  }
-
-  get query() {
-    return this.searchQueryValue;
-  }
-
-  set query(newQuery) {
-    this.searchQueryValue = newQuery;
-  }
-}
+  return await res.data;
+};

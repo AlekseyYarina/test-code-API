@@ -9,23 +9,26 @@
 </head>
 
 <body>
-  
-  <header class="header-container">
-    <div class="container">
-      <form class="search-form" id="search-form-js">
-        <div class="search-container">
-          <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-          <button class="btn-search" type="submit" id="btn-search-js">Search</button>
-        </div>
-      </form>
+  <div class="container-pagination">
+    <button class="button prevNext" id="prev">
+      <svg class="angle-left" width="24" height="24">
+        <use href="#"></use>
+      </svg>
+    </button>
+    <div class="pagination-links">
+      <a href="#" class="pag-link active">1</a>
+      <a href="#" class="pag-link">2</a>
+      <a href="#" class="pag-link">3</a>
+      <a href="#" class="pag-link">4</a>
+      <a href="#" class="pag-link">5</a>
     </div>
-  </header>
-
-  <main class="container">
-    <div class="gallery" id="gallery-js"></div>
-    <div class="js-guard"></div>
-    <button type="button" class="btn-load-more visually-hidden" id="load-more-js">Load More Images</button>
-  </main>
+    <button class="button prev-next prevNext" id="next">
+      <i class="angle-right"></i>
+      <svg class="angle-right" width="24" height="24">
+        <use href="#"></use>
+      </svg>
+    </button>
+  </div>
 
   <script src="index.js" type="module"></script>
 </body>
